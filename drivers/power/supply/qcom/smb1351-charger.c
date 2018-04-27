@@ -1,4 +1,5 @@
 /* Copyright (c) 2016-2017 The Linux Foundation. All rights reserved.
+ * Copyright (C) 2018 XiaoMi, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -1425,6 +1426,8 @@ static int smb1351_parallel_set_chg_suspend(struct smb1351_charger *chip,
 	int rc;
 	u8 reg, mask = 0;
 
+	pr_err("sunxing enter parallel chg suspend enter\n");
+
 	if (chip->parallel_charger_suspended == suspend) {
 		pr_debug("Skip same state request suspended = %d suspend=%d\n",
 				chip->parallel_charger_suspended, !suspend);
@@ -1526,6 +1529,7 @@ static int smb1351_parallel_set_chg_suspend(struct smb1351_charger *chip,
 		if (rc)
 			pr_debug("failed to suspend rc=%d\n", rc);
 
+		pr_err("sunxing suspend smb1351 success\n");
 		chip->usb_psy_ma = SUSPEND_CURRENT_MA;
 		chip->parallel_charger_suspended = true;
 	}
